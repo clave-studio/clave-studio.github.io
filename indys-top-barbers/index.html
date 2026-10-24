@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indy's Top Barbers — Indy Phenix Glendale · Suite 128</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #F2EDE3;
+            --cream-deep: #E5DDD0;
+            --navy: #1A1412;
+            --charcoal: #1A1412;
+            --ink: #2A221E;
+            --muted: #6B5F56;
+            --hairline: #D4CBBC;
+            --stain: #B8332A;
+            --stain-hi: #D0443A;
+            --gold: #C4A06A;
+            --white: #FFFcf7;
+        }
+        html { background-color: var(--cream); scroll-behavior: smooth; }
+        body { margin: 0; padding: 0; font-family: 'Outfit', sans-serif; background-color: var(--cream); color: var(--charcoal); }
+        .font-ui { font-family: 'Outfit', sans-serif; }
+        .label { font-family: 'Outfit', sans-serif; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.22em; color: var(--muted); }
+        .section-label { font-family: 'Outfit', sans-serif; font-weight: 500; font-size: 12px; text-transform: uppercase; letter-spacing: 0.22em; color: var(--muted); }
+        .hero-headline { font-family: 'Fraunces', Georgia, serif; font-size: 48px; line-height: 1.06; letter-spacing: -0.02em; color: var(--charcoal); font-weight: 500; }
+        .section-headline { font-family: 'Fraunces', Georgia, serif; font-size: 40px; line-height: 1.1; letter-spacing: -0.02em; font-weight: 500; }
+        .body-text { font-family: 'Outfit', sans-serif; font-size: 17px; line-height: 1.65; color: var(--ink); max-width: 38em; }
+        .caption { font-family: 'Outfit', sans-serif; font-size: 14px; color: var(--muted); }
+        .btn-primary { background-color: var(--stain); color: var(--white); padding: 14px 28px; border-radius: 6px; font-size: 13px; font-weight: 500; letter-spacing: 0.06em; display: inline-flex; align-items: center; justify-content: center; text-decoration: none; font-family: 'Outfit', sans-serif; transition: transform 0.3s ease-out, background-color 0.2s ease; }
+        .btn-primary:hover { transform: translateY(-1px); background-color: var(--stain-hi); }
+        .btn-secondary { background-color: transparent; color: var(--charcoal); padding: 14px 28px; border: 1px solid var(--charcoal); border-radius: 6px; font-size: 13px; font-weight: 500; letter-spacing: 0.06em; display: inline-flex; align-items: center; justify-content: center; text-decoration: none; font-family: 'Outfit', sans-serif; }
+        .nav-link { font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 0.04em; color: #E5DDD0; text-decoration: none; position: relative; }
+        .nav-link:hover { color: var(--gold); }
+        .accent-italic { font-style: italic; color: var(--stain); font-weight: 500; }
+        .image-frame { border-radius: 28px; overflow: hidden; }
+        .image-frame img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 40%; }
+        .wordmark { font-family: 'Outfit', sans-serif; line-height: 1.05; color: #F2EDE3; text-decoration: none; }
+        .wordmark .name { font-size: 14px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #F2EDE3; }
+        .wordmark .trade { font-size: 10px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: #C4A06A; }
+        .logo-img { height: 40px; width: auto; display: block; background: #0a0a0a; border-radius: 6px; padding: 0; }
+        @media (min-width: 1024px) { .logo-img { height: 48px; } }
+        .paper-noise { background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"); opacity: 0.035; mix-blend-mode: multiply; pointer-events: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 100; }
+        .hero-fill { min-height: calc(100vh - 76px); }
+        .service-pill { border: 1px solid var(--hairline); background: var(--white); border-radius: 999px; padding: 10px 18px; font-size: 13px; font-weight: 500; letter-spacing: 0.04em; color: var(--charcoal); }
+        .gallery-tile { cursor: pointer; border: 0; padding: 0; background: none; display: block; width: 100%; text-align: left; }
+        .gallery-tile img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 40%; transition: transform 0.6s ease-out; }
+        .gallery-tile:hover img { transform: scale(1.03); }
+        .lightbox { display: none; position: fixed; inset: 0; z-index: 80; background: rgba(26, 20, 18, 0.88); align-items: center; justify-content: center; padding: 24px; }
+        .lightbox.open { display: flex; }
+        .lightbox img { max-width: min(1100px, 92vw); max-height: 86vh; object-fit: contain; border-radius: 12px; }
+        .image-bar { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 2px; scrollbar-width: thin; }
+        .image-bar-btn { flex: 0 0 auto; width: 72px; height: 56px; border-radius: 10px; overflow: hidden; border: 2px solid transparent; padding: 0; background: none; cursor: pointer; opacity: 0.72; transition: opacity 0.2s ease, border-color 0.2s ease; }
+        .image-bar-btn img { display: block; width: 100%; height: 100%; object-fit: cover; }
+        .image-bar-btn:hover { opacity: 1; }
+        .image-bar-btn.active { opacity: 1; border-color: var(--stain); }
+        .process-step { border-left: 2px solid var(--hairline); padding-left: 16px; }
+        .about-card { background: var(--white); border: 1px solid var(--hairline); border-radius: 16px; padding: 20px 22px; }
+        @media (max-width: 1023px) {
+            .hero-headline { font-size: 32px; }
+            .section-headline { font-size: 30px; }
+            .hero-fill { min-height: calc(100vh - 60px); }
+            .wordmark .name { font-size: 12px; }
+            .wordmark .trade { font-size: 9px; }
+            .logo-img { height: 34px; }
+            .image-bar-btn { width: 64px; height: 50px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="relative min-h-screen font-ui" style="background-color: var(--cream); color: var(--charcoal);">
+        <div class="paper-noise"></div>
+
+        <nav class="sticky top-0 z-50 w-full" style="background-color: var(--charcoal);">
+            <div class="max-w-[1200px] mx-auto px-5 lg:px-10 h-[60px] lg:h-[76px] flex items-center justify-between gap-4">
+                <a href="#home" id="nav-home-link" class="flex items-center gap-3 shrink-0" style="text-decoration: none;">
+                    <img src="logo.png" alt="Indy's Top Barbers" class="logo-img">
+                    <span class="wordmark hidden sm:block">
+                        <span class="name block">Indy's Top Barbers</span>
+                        <span class="trade block">Glendale · Suite 128</span>
+                    </span>
+                </a>
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#studio" id="nav-work-link" class="nav-link">Work</a>
+                    <a href="services.html" id="nav-services-link" class="nav-link">Services</a>
+                    <a href="#visit" id="nav-visit-link" class="nav-link">Visit</a>
+                </div>
+                <div class="flex items-center gap-3 lg:gap-4">
+                    <a href="tel:+13176958355" id="nav-call-link" class="hidden sm:inline-block text-sm font-medium whitespace-nowrap" style="color: #E5DDD0; text-decoration: none;">317-695-8355</a>
+                    <a href="https://booksy.com/en-us/961335_bfaded_barber-shop_19577_indianapolis" id="nav-book-btn" class="btn-primary" style="padding: 10px 18px;" target="_blank" rel="noopener">Book</a>
+                </div>
+            </div>
+        </nav>
+
+        <main>
+            <section id="home" class="hero-fill relative overflow-hidden w-full flex items-stretch">
+                <div class="max-w-[1440px] w-full mx-auto flex flex-col lg:flex-row">
+                    <div class="w-full lg:w-[42%] px-5 pt-6 pb-4 lg:pl-16 lg:pr-12 xl:pl-24 xl:pr-16 lg:py-0 flex flex-col justify-center">
+                        <div class="max-w-lg">
+                            <div class="label mb-4 lg:mb-5">Indy Glendale · Barber · Suite 128</div>
+                            <h1 class="hero-headline mb-4 lg:mb-5">Hey, <span class="accent-italic">fades &amp; cuts.</span></h1>
+                            <p class="body-text mb-3 lg:mb-4" style="font-size: 16px; max-width: 34em;">Indy's Top Barbers at Phenix Salon Suites Glendale — precision fades, lineups, beard work, tapers, and kids' cuts in a private suite. Book on Booksy or call.</p>
+                            <p class="caption mb-5 lg:mb-7">317-695-8355 · 2605 E. 62nd St. #2001, Suite 128, Indianapolis</p>
+                            <div class="flex flex-row flex-wrap gap-3">
+                                <a href="tel:+13176958355" id="hero-call-btn" class="btn-primary">Call 317-695-8355</a>
+                                <a href="https://booksy.com/en-us/961335_bfaded_barber-shop_19577_indianapolis" id="hero-book-btn" class="btn-secondary" target="_blank" rel="noopener">Book</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full lg:w-[58%] px-5 pb-6 lg:p-8 xl:p-12 flex-1 flex flex-col justify-center gap-3">
+                        <button type="button" id="hero-main" class="gallery-tile image-frame relative w-full h-[34vh] lg:h-[calc(100vh-200px)] min-h-[220px] lg:min-h-[480px]" data-full="work1.jpg" data-alt="Waves, lineup &amp; beard — Indy's Top Barbers Glendale" aria-label="Open cut photo">
+                            <img id="hero-img" src="work1.jpg" alt="Waves, lineup &amp; beard — Indy's Top Barbers Glendale" style="object-position: center 30%">
+                        </button>
+                        <div class="image-bar" id="image-bar" role="tablist" aria-label="Portfolio photos">
+                            <button type="button" class="image-bar-btn active" role="tab" aria-selected="true" data-src="work1.jpg" data-alt="Waves, lineup &amp; beard — Indy's Top Barbers Glendale" data-pos="center 30%">
+                                <img src="work1.jpg" alt="">
+                            </button>
+                            <button type="button" class="image-bar-btn" role="tab" aria-selected="false" data-src="work2.jpg" data-alt="Skin fade &amp; beard — Indy's Top Barbers" data-pos="center 28%">
+                                <img src="work2.jpg" alt="">
+                            </button>
+                            <button type="button" class="image-bar-btn" role="tab" aria-selected="false" data-src="work3.jpg" data-alt="Crop cut with skin fade — Indy's Top Barbers" data-pos="center 35%">
+                                <img src="work3.jpg" alt="">
+                            </button>
+                            <button type="button" class="image-bar-btn" role="tab" aria-selected="false" data-src="work4.jpg" data-alt="Locs with burst fade &amp; lineup — Indy's Top Barbers" data-pos="center 25%">
+                                <img src="work4.jpg" alt="">
+                            </button>
+                            <button type="button" class="image-bar-btn" role="tab" aria-selected="false" data-src="work5.jpg" data-alt="Braids with fade &amp; lineup — Indy's Top Barbers" data-pos="center 30%">
+                                <img src="work5.jpg" alt="">
+                            </button>
+                            <button type="button" class="image-bar-btn" role="tab" aria-selected="false" data-src="work6.jpg" data-alt="Textured fade &amp; sharp lineup — Indy's Top Barbers" data-pos="center 28%">
+                                <img src="work6.jpg" alt="">
+                            </button>
+                        </div>
+                        <p class="caption">Real Indy's Top Barbers / B.Faded work from Booksy — tap the bar or enlarge.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="services" class="py-14 lg:py-20" style="background-color: var(--cream-deep); border-top: 1px solid var(--hairline);">
+                <div class="max-w-[1200px] mx-auto px-5 lg:px-10">
+                    <div class="mb-8 lg:mb-10">
+                        <div class="section-label mb-3">Services</div>
+                        <h2 class="section-headline">Fades, tapers, beards — <span class="accent-italic">book the chair.</span></h2>
+                    </div>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="service-pill">Faded Ultimate + Beard</span>
+                        <span class="service-pill">Faded Ultimate</span>
+                        <span class="service-pill">Faded Experience + Beard</span>
+                        <span class="service-pill">Taper Experience</span>
+                        <span class="service-pill">Build Your Haircut</span>
+                        <span class="service-pill">Bald Head Shave</span>
+                        <span class="service-pill">Teen Cut</span>
+                        <span class="service-pill">Kids' Cuts</span>
+                    </div>
+                    <p class="caption mt-8">Barber services by appointment — no prices listed here. <a href="services.html" id="services-more-link" class="nav-link" style="display: inline; color: var(--charcoal);">Full services</a></p>
+                </div>
+            </section>
+
+            <section id="studio" class="py-14 lg:py-24">
+                <div class="max-w-[1200px] mx-auto px-5 lg:px-10">
+                    <div class="mb-8 lg:mb-12">
+                        <div class="section-label mb-3">The work</div>
+                        <h2 class="section-headline">Fades, lineups, <span class="accent-italic">sharp detail.</span></h2>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-5 lg:gap-8">
+                        <button type="button" class="gallery-tile image-frame h-[260px] lg:h-[420px]" data-full="work1.jpg" data-alt="Waves, lineup &amp; beard — Indy's Top Barbers Glendale" aria-label="Open waves lineup photo">
+                            <img src="work1.jpg" alt="Waves, lineup &amp; beard — Indy's Top Barbers Glendale" style="object-position: center 30%;">
+                        </button>
+                        <button type="button" class="gallery-tile image-frame h-[260px] lg:h-[420px]" data-full="work4.jpg" data-alt="Locs with burst fade &amp; lineup — Indy's Top Barbers" aria-label="Open locs fade photo">
+                            <img src="work4.jpg" alt="Locs with burst fade &amp; lineup — Indy's Top Barbers" style="object-position: center 25%;">
+                        </button>
+                        <button type="button" class="gallery-tile image-frame h-[260px] lg:h-[420px]" data-full="work3.jpg" data-alt="Crop cut with skin fade — Indy's Top Barbers" aria-label="Open crop fade photo">
+                            <img src="work3.jpg" alt="Crop cut with skin fade — Indy's Top Barbers" style="object-position: center 35%;">
+                        </button>
+                        <button type="button" class="gallery-tile image-frame h-[260px] lg:h-[420px]" data-full="work6.jpg" data-alt="Textured fade &amp; sharp lineup — Indy's Top Barbers" aria-label="Open textured fade photo">
+                            <img src="work6.jpg" alt="Textured fade &amp; sharp lineup — Indy's Top Barbers" style="object-position: center 28%;">
+                        </button>
+                    </div>
+                    <p class="caption mt-5">Real portfolio from Booksy (B.Faded / Indy's Top Barbers) — fades, lineups, locs, and finishing. Tap to enlarge.</p>
+                </div>
+            </section>
+
+            <section id="about" class="py-14 lg:py-20" style="background-color: var(--cream-deep); border-top: 1px solid var(--hairline);">
+                <div class="max-w-[1200px] mx-auto px-5 lg:px-10">
+                    <div class="mb-8 lg:mb-10">
+                        <div class="section-label mb-3">About</div>
+                        <h2 class="section-headline">Private barber suite in <span class="accent-italic">Glendale.</span></h2>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-5">
+                        <div class="about-card">
+                            <p class="body-text" style="font-size: 15px; max-width: none;">Indy's Top Barbers is a men's barber chair at Phenix Salon Suites Glendale — fades, tapers, lineups, beard detail, bald fades, and kids' cuts in Suite 128. Also known as B.Faded on Booksy.</p>
+                            <p class="caption mt-3">Phenix Salon Suites · Suite 128 · Glendale Towne Center</p>
+                        </div>
+                        <div class="about-card">
+                            <p class="body-text" style="font-size: 15px; max-width: none;">Book on Booksy or call 317-695-8355 — Suite 128 at Phenix Salon Suites, 2605 E. 62nd St. #2001, Indianapolis. Serving Glendale, Broad Ripple, and the Indy northside by appointment.</p>
+                            <p class="caption mt-3">Indianapolis-area barber · 62nd Street</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="process" class="py-14 lg:py-20">
+                <div class="max-w-[1200px] mx-auto px-5 lg:px-10">
+                    <div class="mb-8 lg:mb-10">
+                        <div class="section-label mb-3">The visit</div>
+                        <h2 class="section-headline">Book, sit down, <span class="accent-italic">walk out sharp.</span></h2>
+                    </div>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <div class="process-step">
+                            <div class="label mb-2">01</div>
+                            <p class="body-text" style="font-size: 15px; max-width: none;">Book on Booksy or call 317-695-8355 — fade, taper, beard, or a kids' cut.</p>
+                        </div>
+                        <div class="process-step">
+                            <div class="label mb-2">02</div>
+                            <p class="body-text" style="font-size: 15px; max-width: none;">Arrive at Phenix Salon Suites Glendale, Suite 128 — 2605 E. 62nd St. #2001.</p>
+                        </div>
+                        <div class="process-step">
+                            <div class="label mb-2">03</div>
+                            <p class="body-text" style="font-size: 15px; max-width: none;">Precision cut and lineup detail in a private suite — refreshments and a focused chair.</p>
+                        </div>
+                        <div class="process-step">
+                            <div class="label mb-2">04</div>
+                            <p class="body-text" style="font-size: 15px; max-width: none;">Walk out clean. Book your next visit on Booksy before you leave — openings go fast.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="visit" class="py-14 lg:py-24 pb-28 lg:pb-24">
+                <div class="max-w-[1200px] mx-auto px-5 lg:px-10">
+                    <div class="mb-10">
+                        <div class="section-label mb-3">Visit</div>
+                        <h2 class="section-headline">62nd Street, <span class="accent-italic">Glendale.</span></h2>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-12 lg:gap-20">
+                        <div>
+                            <div class="label mb-3">Address</div>
+                            <p class="body-text mb-8">Phenix Salon Suites<br>2605 E. 62nd St. #2001<br>Suite 128<br>Indianapolis, IN 46220</p>
+                            <div class="label mb-3">Hours</div>
+                            <p class="body-text mb-8">By appointment — book on Booksy or call for openings.</p>
+                            <div class="label mb-3">Contact</div>
+                            <a href="tel:+13176958355" id="visit-phone-link" class="body-text block mb-2" style="color: var(--charcoal); text-decoration: none;">317-695-8355</a>
+                            <a href="mailto:bryceturner03@gmail.com" id="visit-email-link" class="body-text block mb-2" style="color: var(--charcoal); text-decoration: none;">bryceturner03@gmail.com</a>
+                        </div>
+                        <div>
+                            <div class="label mb-3">Book</div>
+                            <p class="body-text mb-6">Book online on Booksy (B.Faded) or call 317-695-8355. Phenix Glendale lists Indy's Top Barbers in Suite 128.</p>
+                            <a href="https://booksy.com/en-us/961335_bfaded_barber-shop_19577_indianapolis" id="visit-book-link" class="btn-primary mb-8" target="_blank" rel="noopener">Book on Booksy</a>
+                            <div class="label mb-3 mt-8">Online</div>
+                            <p class="body-text"><a href="https://booksy.com/en-us/961335_bfaded_barber-shop_19577_indianapolis" id="visit-gg-link" style="color: var(--charcoal);" target="_blank" rel="noopener">booksy.com · B.Faded</a><br><a href="https://www.instagram.com/ib_faded/" id="visit-ig-link" style="color: var(--charcoal);" target="_blank" rel="noopener">@ib_faded</a></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="py-16 lg:py-24" style="background-color: var(--charcoal);">
+                <div class="max-w-[1200px] mx-auto px-5 lg:px-10 text-center">
+                    <div class="section-label mb-5" style="color: rgba(242, 237, 227, 0.5);">Book your visit</div>
+                    <h2 class="section-headline mb-8" style="color: var(--white);">Ready for a fade that feels like you?<br><span class="accent-italic">Book online or call.</span></h2>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="tel:+13176958355" id="cta-call-btn" class="btn-primary">Call 317-695-8355</a>
+                        <a href="https://booksy.com/en-us/961335_bfaded_barber-shop_19577_indianapolis" id="cta-book-btn" class="btn-secondary" style="border-color: var(--white); color: var(--white);" target="_blank" rel="noopener">Book on Booksy</a>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="py-12" style="background-color: var(--navy);">
+                <div class="max-w-[1200px] mx-auto px-5 lg:px-10">
+                    <div class="flex flex-col md:flex-row justify-between items-start gap-6">
+                        <div>
+                            <a href="#home" id="footer-home-link" class="wordmark inline-block">
+                                <span class="name block">Indy's Top Barbers</span>
+                                <span class="trade block">Fades · Lineups · Glendale</span>
+                            </a>
+                            <p class="caption mt-3" style="color: #A8A296;">Glendale · Suite 128 · Phenix Salon Suites</p>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <a href="tel:+13176958355" id="footer-phone-link" class="caption" style="color: #E5DDD0; text-decoration: none;">317-695-8355</a>
+                            <a href="mailto:bryceturner03@gmail.com" id="footer-email-link" class="caption" style="color: #E5DDD0; text-decoration: none;">bryceturner03@gmail.com</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </main>
+
+        <div class="fixed bottom-0 left-0 right-0 z-50 md:hidden" style="background-color: var(--navy);">
+            <div class="px-4 py-3 flex gap-3">
+                <a href="tel:+13176958355" id="mob-call-btn" class="btn-primary flex-1" style="padding: 12px 16px;">Call</a>
+                <a href="https://booksy.com/en-us/961335_bfaded_barber-shop_19577_indianapolis" id="mob-book-btn" class="btn-secondary flex-1" style="padding: 12px 16px; color: #F2EDE3; border-color: #E5DDD0;" target="_blank" rel="noopener">Book</a>
+            </div>
+        </div>
+
+        <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Photo">
+            <button type="button" id="lightbox-close" class="absolute top-4 right-4 btn-secondary" style="color: var(--white); border-color: var(--white);">Close</button>
+            <img id="lightbox-img" alt="">
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            var heroImg = document.getElementById('hero-img');
+            var heroMain = document.getElementById('hero-main');
+            var bar = document.getElementById('image-bar');
+            if (bar) {
+                bar.querySelectorAll('.image-bar-btn').forEach(function (btn) {
+                    btn.addEventListener('click', function (e) {
+                        e.stopPropagation();
+                        var src = btn.getAttribute('data-src');
+                        var alt = btn.getAttribute('data-alt') || '';
+                        var pos = btn.getAttribute('data-pos') || 'center 40%';
+                        var fit = btn.getAttribute('data-fit') || 'cover';
+                        heroImg.src = src;
+                        heroImg.alt = alt;
+                        heroImg.style.objectPosition = pos;
+                        if (fit === 'contain' || src.indexOf('logo') !== -1) {
+                            heroImg.style.objectFit = 'contain';
+                            heroImg.style.background = '#F2EDE3';
+                        } else {
+                            heroImg.style.objectFit = 'cover';
+                            heroImg.style.background = 'transparent';
+                        }
+                        heroMain.setAttribute('data-full', src);
+                        heroMain.setAttribute('data-alt', alt);
+                        bar.querySelectorAll('.image-bar-btn').forEach(function (b) {
+                            b.classList.remove('active');
+                            b.setAttribute('aria-selected', 'false');
+                        });
+                        btn.classList.add('active');
+                        btn.setAttribute('aria-selected', 'true');
+                    });
+                });
+            }
+
+            var box = document.getElementById('lightbox');
+            var img = document.getElementById('lightbox-img');
+            var closeBtn = document.getElementById('lightbox-close');
+            function openLightbox(src, alt) {
+                img.src = src;
+                img.alt = alt || '';
+                box.classList.add('open');
+            }
+            function closeLightbox() {
+                box.classList.remove('open');
+                img.src = '';
+            }
+            document.querySelectorAll('.gallery-tile').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    openLightbox(btn.getAttribute('data-full'), btn.getAttribute('data-alt'));
+                });
+            });
+            closeBtn.addEventListener('click', closeLightbox);
+            box.addEventListener('click', function (e) {
+                if (e.target === box) closeLightbox();
+            });
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') closeLightbox();
+            });
+        })();
+    </script>
+</body>
+</html>
